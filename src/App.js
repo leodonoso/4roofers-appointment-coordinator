@@ -69,7 +69,6 @@ function App() {
       
       <label htmlFor='address'>Address: </label>
       <input name="address" type='text' onChange={(e) => {setAddress(e.target.value)}} defaultValue={address} />
-      {/* { distanceMiles.toPrecision(4) > roofersList[0].radiusMiles ? <p>Out of trademark radius</p> : <p>Qualified!</p>} */}
       <h2>Available roofers</h2>
       <ul>
         {roofersInArea.map((roofer) =>
@@ -80,6 +79,7 @@ function App() {
               <li key={i}>
                 <p>{r.miles} miles from {r.location}</p>
                 <p>Distance between {address} and {r.location}: {distanceMiles.toPrecision(4)} miles</p>
+                { distanceMiles.toPrecision(4) > r.miles ? <p>Out of radius</p> : <p>Qualified!</p>}
               </li>)}
             </ul>
           </li>
