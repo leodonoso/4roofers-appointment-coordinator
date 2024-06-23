@@ -3,17 +3,60 @@ import './App.css';
 
 function App() {
   const [address, setAddress] = useState("607 W Beech St")
+  const [area, setArea] = useState("Oklahoma")
 
   const roofersList = [
     {
       "id": 0,
       "name": "Trademark",
       "financing?": true,
-      "radiusMiles": 40,
-      "radiusLocation": "Oklahoma City",
-      "state": "Oklahoma"
+      "radius": [
+        {
+          "miles": 45,
+          "location": "Oklahoma City"
+        },
+        {
+          "miles": 45,
+          "location": "Tulsa"
+        },
+        {
+          "miles": 30,
+          "location": "Lawton"
+        }
+      ],
+      "state": "oklahoma"
+    },
+    {
+      "id": 1,
+      "name": "BTN Hurricane",
+      "financing?": true,
+      "radius": [
+        {
+          "miles": 45,
+          "location": "Palm Beach"
+        }
+      ],
+      "state": "florida"
+    },
+    {
+      "id": 2,
+      "name": "INGExteriors",
+      "financing?": true,
+      "radius": [
+        {
+          "miles": 45,
+          "location": "Shaumberg"
+        }
+      ],
+      "state": "illinois"
     }
   ]
+
+  const roofersInArea = roofersList.filter((roofer) => {
+    return roofer.state.includes(area.toLowerCase())
+  })
+
+  console.log(roofersInArea)
 
   let distance = 241224.469
   let distanceMiles = distance / 1609
@@ -21,11 +64,27 @@ function App() {
   return (
     <div className="App">
       <h1>4HOMEOWNERS ROOFING AVAILABILITY</h1>
-      <input type='text' onChange={(e) => {setAddress(e.target.value)}} defaultValue={address} />
-      <button>Find a roofer</button>
-      {/* Click button and get response from mapbox, get distance out of response in meters */}
-      <p>Distance from {address} and Oklahoma City: {distanceMiles.toPrecision(4)} miles</p>
-      { distanceMiles.toPrecision(4) > roofersList[0].radiusMiles ? <p>Out of trademark radius</p> : <p>Qualified!</p>}
+      <label htmlFor='state'>State: </label>
+      <input name="state" type='text' onChange={(e) => {setArea(e.target.value)}} defaultValue={area} />
+      
+      <label htmlFor='address'>Address: </label>
+      <input name="address" type='text' onChange={(e) => {setAddress(e.target.value)}} defaultValue={address} />
+      {/* { distanceMiles.toPrecision(4) > roofersList[0].radiusMiles ? <p>Out of trademark radius</p> : <p>Qualified!</p>} */}
+      <h2>Available roofers</h2>
+      <ul>
+        {roofersInArea.map((roofer) =>
+          <li key={roofer.id}>
+            <p>{roofer.name}</p>
+            <p>Financing?: {roofer['financing?'] ? "Yes" : "No"}</p>
+            <ul>Radius: {roofer.radius.map((r, i) => 
+              <li key={i}>
+                <p>{r.miles} miles from {r.location}</p>
+                <p>Distance between {address} and {r.location}: {distanceMiles.toPrecision(4)} miles</p>
+              </li>)}
+            </ul>
+          </li>
+        )}
+      </ul>
     </div>
   );
 
