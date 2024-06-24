@@ -1,7 +1,133 @@
 body {
+  min-width: 100%; min-height: 100vh;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(140,197,243);
+  background: linear-gradient(45deg, #08806A 0%, rgba(251,252,226,1) 100%);
+  overflow-x: hidden;
 }
 
+h1 {
+  color: white;
+  filter: drop-shadow(2px 2px 2px #4e4e4e);
+}
+
+::placeholder {
+  color: #404040;
+}
+
+.roofers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
+  max-width: 95vw;
+  gap: 12px;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  background-color: #08806A;
+}
+
+.nav {
+  width: 50vw;
+  display: flex;
+  gap: 25px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav input {
+  width: 50%;
+  padding: 6px;
+  background-color: #08806A;
+}
+
+input:focus{
+  outline: none;
+  border-bottom: solid 1.5px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  border: none;
+  border-bottom: solid 1.25px;
+}
+
+.card {
+  margin-left: 50%;
+  transform: translateX(-44%);
+  width: 30vw;
+  padding: 4px;
+  background: rgb(194,193,193);
+  background: linear-gradient(0deg, #08806A 0%, rgb(237, 248, 207) 100%);
+  border-radius: 12px;
+  filter: drop-shadow(2px 2px 3px rgb(57, 57, 57));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container {
+  font-weight: bold;
+  margin-right: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  line-height: 0px;
+}
+
+.card-img {
+  max-width: 90%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  filter: drop-shadow(2px 2px 2px #4e4e4e);
+}
+
+.card li {
+  margin-left: 2rem;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: baseline;
+  text-align: left;
+  line-height: normal;
+}
+
+.card ul {
+  max-width: 80%;
+  border-radius: 12px;
+  padding: 0 1rem 1rem 1rem;
+  max-height: 12rem;
+  overflow-y: scroll;
+  background-color: #08806A;
+  background: linear-gradient(0deg, #044141 0%, #055647 100%);
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.card li h4 {
+  font-size: 1.1rem;
+}
+
+.card li p {
+  margin-top: -0.5rem;
+}
+
+.card li span {
+  font-weight: bold;
+  margin-top: -1rem;
+}
